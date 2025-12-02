@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-image: url("../images/fondPageWeb.jpg");
+  background-size: cover;
+}
+
+canvas {
+  box-shadow: -7px 7px 0px rgba(0, 0, 0, 0.233);
+}
+
+/*Font*/
+
+@font-face {
+  font-family: "Digital";
+  src: url(../fonts/digital-7-font/Digital7-rg1mL.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Digital-Italic";
+  src: url(../fonts/digital-7-font/Digital7Italic-BW658.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Digital-Mono";
+  src: url(../fonts/digital-7-font/Digital7Italic-BW658.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Digital-Italic-Mono";
+  src: url(../fonts/digital-7-font/Digital7Italic-BW658.ttf) format("truetype");
+}
