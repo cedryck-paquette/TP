@@ -30,6 +30,7 @@ let oFond = {
   videSrc: "assets/images/fondVide.jpg",
   ecranNiveauSrc: "assets/images/ecranNiveau.png",
   ecranFinSrc: "assets/images/ecranFin.jpg",
+  ecranGameOVerSrc: "assets/images/ecranGameOver.jpg",
 };
 
 //boutons
@@ -131,16 +132,16 @@ function onClicCanvas(evenement) {
 
     if (choix1 == null && choix2 == null) {
       if (clicJeu == "=") {
-        afficherErreur();
+        alert("Les champs sont encore vide");
       } else if (clicJeu == "backspace") {
-        afficherErreur();
+        alert("Il n'y a rien à effacer");
       } else if (clicJeu != "") {
         choix1 = clicJeu;
       }
       //choix2
     } else if (choix1 != null && choix2 == null) {
       if (clicJeu == "=") {
-        afficherErreur();
+        alert("Il reste un champ vide");
       } else if (clicJeu == "backspace") {
         choix1 = null;
       } else if (clicJeu != "") {
@@ -154,7 +155,7 @@ function onClicCanvas(evenement) {
       } else if (clicJeu == "backspace") {
         choix2 = null;
       } else if (clicJeu != "") {
-        afficherErreur();
+        alert("Les champs sont pleins, veuillez valider votre réponse, ou effacer un choix");
       }
     }
   }
@@ -170,6 +171,8 @@ function boucleJeu() {
     demarrerJeu();
   } else if (sEtatJeu == "fin") {
     afficherFin();
+  } else if (sEtatJeu == "gameOver") {
+    afficherGameOver();
   }
 }
 
@@ -211,7 +214,7 @@ function validerReponse() {
       mauvaiseReponse();
     }
   } else if (niv == 6) {
-    if (choix1 == "/" && choix2 == "*") {
+    if ((choix1 == "/" && choix2 == "*") || (choix1 == "+" && choix2 == "/")) {
       bonneReponse();
     } else {
       mauvaiseReponse();
@@ -257,8 +260,7 @@ function mauvaiseReponse() {
     sons.mauvaiseReponse.play();
     chances--;
   } else if (chances <= 0) {
-    afficherGameOver();
-    reinit();
+    sEtatJeu = "gameOver";
   }
 }
 //-----------------------------------FONCTIONS DESSIN--------------------------------------
@@ -274,7 +276,6 @@ function afficherIntro() {
     posCurseur++;
   }
   oFond.image.src = oFond.introSrc;
-  oContexte.clearRect(0, 0, nLargeur, nHauteur);
   oContexte.drawImage(oFond.image, 0, 0, oFond.l, oFond.h);
   oContexte.drawImage(oBoutonDebut, 650, 450, 250, 150);
 
@@ -286,7 +287,6 @@ function afficherIntro() {
 
 function afficherNiveau() {
   oFond.image.src = oFond.ecranNiveauSrc;
-  oContexte.clearRect(0, 0, nLargeur, nHauteur);
   oContexte.drawImage(oFond.image, 0, 0, nLargeur, nHauteur);
   oContexte.drawImage(oBoutonAcceuil, 875, 25, 100, 100);
   //afficher boutons
@@ -357,17 +357,15 @@ function demarrerJeu() {
 function afficherFin() {
   sons.jeuBattu.play();
   oFond.image.src = oFond.ecranFinSrc;
-  oContexte.drawImage(oFond, 0, 0, nLargeur, nHauteur);
+  oContexte.drawImage(oFond.image, 0, 0, nLargeur, nHauteur);
+  oContexte.drawImage(oBoutonAcceuil, 875, 25, 100, 100);
 }
 
 function afficherGameOver() {
   sons.gameOver.play();
-  alert("game over");
-  reinit();
-}
-
-function afficherErreur() {
-  alert("erreur");
+  oFond.image.src = oFond.ecranGameOVerSrc;
+  oContexte.drawImage(oFond.image, 0, 0, nLargeur, nHauteur);
+  oContexte.drawImage(oBoutonAcceuil, 875, 25, 100, 100);
 }
 
 window.addEventListener("load", init);
