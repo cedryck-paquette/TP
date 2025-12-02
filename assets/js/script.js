@@ -162,6 +162,7 @@ function onClicCanvas(evenement) {
 
 //----------------------------------------BOUCLE JEU----------------------------------------------------
 function boucleJeu() {
+  oContexte.clearRect(0, 0, nLargeur, nHauteur);
   if (sEtatJeu == "intro") {
     afficherIntro();
   } else if (sEtatJeu == "jeu") {
@@ -355,8 +356,7 @@ function demarrerJeu() {
 
 function afficherFin() {
   sons.jeuBattu.play();
-  oContexte.clearRect(0, 0, nLargeur, nHauteur);
-  oFond.src = oFond.ecranFinSrc;
+  oFond.image.src = oFond.ecranFinSrc;
   oContexte.drawImage(oFond, 0, 0, nLargeur, nHauteur);
 }
 
@@ -369,7 +369,5 @@ function afficherGameOver() {
 function afficherErreur() {
   alert("erreur");
 }
-//Ecran Fin
-function afficherFin() {}
 
 window.addEventListener("load", init);
