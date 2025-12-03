@@ -324,7 +324,7 @@ function demarrerJeu() {
   } else if (niv == 7) {
     oContexte.fillText("12 _ 3 _ 2 = 2", 100, 275);
   } else if (niv == 8) {
-    oContexte.fillText("6 _ 4 _ 7 = 8", 100, 275);
+    oContexte.fillText("6 _ 4 _ 3 = 8", 100, 275);
   } else if (niv == 9) {
     oContexte.fillText("5 _ 2 _ 2 = 9 ", 100, 275);
   } else if (niv == 10) {
