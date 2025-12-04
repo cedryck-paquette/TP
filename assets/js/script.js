@@ -178,6 +178,8 @@ function boucleJeu() {
 
 //----------------------------------FONCTIONS VALIDATION---------------------------------------
 
+//valide toutes les reponses
+
 function validerReponse() {
   //niveau 1
   if (niv == 1) {
@@ -245,14 +247,14 @@ function validerReponse() {
     }
   }
 }
-
+//son bonne reponse, reinit des choix et avance niveau
 function bonneReponse() {
   choix1 = null;
   choix2 = null;
   sons.bonneReponse.play();
   niv++;
 }
-
+//son mauvais reponse, reinit des choix, enleve une chance, si 0 chances -> game over
 function mauvaiseReponse() {
   if (chances > 0) {
     choix1 = null;
@@ -284,7 +286,7 @@ function afficherIntro() {
   oContexte.fillStyle = "rgb(234, 236, 206)";
   oContexte.fillRect(pointDepart, 125, largeurTotale, 100);
 }
-
+//dessine le fond du niveau
 function afficherNiveau() {
   oFond.image.src = oFond.ecranNiveauSrc;
   oContexte.drawImage(oFond.image, 0, 0, nLargeur, nHauteur);
@@ -324,7 +326,7 @@ function demarrerJeu() {
   } else if (niv == 7) {
     oContexte.fillText("12 _ 3 _ 2 = 2", 100, 275);
   } else if (niv == 8) {
-    oContexte.fillText("6 _ 4 _ 7 = 8", 100, 275);
+    oContexte.fillText("6 _ 4 _ 3 = 8", 100, 275);
   } else if (niv == 9) {
     oContexte.fillText("5 _ 2 _ 2 = 9 ", 100, 275);
   } else if (niv == 10) {
@@ -353,14 +355,14 @@ function demarrerJeu() {
     oContexte.fillText("/", 440, 265);
   }
 }
-
+//dessine ecran de fin et joue son fin
 function afficherFin() {
   sons.jeuBattu.play();
   oFond.image.src = oFond.ecranFinSrc;
   oContexte.drawImage(oFond.image, 0, 0, nLargeur, nHauteur);
   oContexte.drawImage(oBoutonAcceuil, 875, 25, 100, 100);
 }
-
+//dessine ecran de game over et joue son game over
 function afficherGameOver() {
   sons.gameOver.play();
   oFond.image.src = oFond.ecranGameOVerSrc;
